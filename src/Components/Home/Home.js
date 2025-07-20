@@ -1,114 +1,194 @@
-// Home.js
-import React from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import dmcImage from '../Header/dmc-logo.jpg';
 import certificatesImage from "../Header/Gallery/team 3.jpg";
-import "./Home.css";
-import dmcImage from "./Images/1.jpg";
 import additionalImage from "./Images/4.jpg";
 import NotificationsScrolling from "./NotificationsScrolling/NotificationsScrolling";
+import './Services.css';
+
+const heroImages = [
+  { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", alt: "Modern Campus", caption: "Modern Campus Facilities" },
+  { src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80", alt: "Team Collaboration", caption: "Expert DMC Team" },
+  { src: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80", alt: "Digital Infrastructure", caption: "Robust Digital Infrastructure" },
+  { src: additionalImage, alt: "Campus", caption: "Campus Life" },
+  { src: certificatesImage, alt: "Team", caption: "Our Team" },
+];
 
 const Home = () => {
+  const [heroIdx, setHeroIdx] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+    const interval = setInterval(() => {
+      setHeroIdx((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Scroll-to-top visibility toggle
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
   return (
-    <div className="home-page-container">
-      <div className="centered-image-container">
-        <div className="scrolling-images">
-          <img src={additionalImage} alt="AdditionalImage" className="home-scroll-images" />
-          <img src={certificatesImage} alt="CertificatesImage" className="home-scroll-images" />
-          <img src={additionalImage} alt="AdditionalImage" className="home-scroll-images" />
-          <img src={certificatesImage} alt="CertificatesImage" className="home-scroll-images" />
-        </div>
+    <div style={{ fontFamily: "Segoe UI, sans-serif", backgroundColor: "#f5f9ff", padding: "2rem 1rem", boxSizing: "border-box" }}>
+      {/* Hero Carousel */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center", marginBottom: "2rem" }} data-aos="fade-in">
+        <img
+          src={heroImages[heroIdx].src}
+          alt={heroImages[heroIdx].alt}
+          style={{
+            width: "100%",
+            height: "auto",
+            maxHeight: 500,
+            borderRadius: "1rem",
+            objectFit: "cover",
+            boxShadow: "0 6px 16px rgba(0, 0, 0, 0.15)"
+          }}
+        />
+        <p style={{ marginTop: 12, fontSize: "1.2rem", color: "#1976d2", fontWeight: 600 }}>
+          {heroImages[heroIdx].caption}
+        </p>
       </div>
-      <div className="home-container">
-        <div className="left-content">
-          <h2 className="heading">
-            Digital Monitoring Cell (DMC) - JNTUGV
-          </h2>
-          <p>
-            JNTUGV Digital Monitoring Cell (DMC) Established to maintain and
-            monitor the IT infrastructure of the University. DMC is mainly
-            involved in University digitization. The Digital Monitoring Cell
-            (DMC) serves as the cornerstone of organizations' digital
-            operations, overseeing the management, maintenance, and security of
-            their digital infrastructure. Established with the primary objective
-            of ensuring the efficient and secure functioning of digital systems,
-            the DMC undertakes the critical task of monitoring networks,
-            servers, databases, and applications. By proactively identifying and
-            addressing issues, the DMC minimizes downtime and disruptions,
-            thereby optimizing organizational efficiency. Moreover, the DMC is
-            entrusted with implementing robust cybersecurity measures to
-            safeguard against cyber threats and ensure compliance with relevant
-            regulations. Beyond security, the DMC spearheads digitization
-            initiatives, driving innovation and digital transformation across
-            the organization. Through collaboration with various departments and
-            teams, the DMC provides essential support, training, and technical
-            assistance, fostering a culture of digital excellence and resilience
-            within the organization.
+
+      {/* Description Section */}
+      <section style={{ maxWidth: 1100, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center", marginBottom: "3rem" }}>
+        <div style={{ flex: "1 1 60%" }} data-aos="fade-right">
+          <h2 style={{ color: "#1976d2", fontSize: "1.75rem", marginBottom: "1rem" }}>Digital Monitoring Cell (DMC) - JNTUGV</h2>
+          <p style={{ fontSize: "1rem", lineHeight: 1.7 }}>
+            The <strong>JNTUGV Digital Monitoring Cell (DMC)</strong> manages IT infrastructure of the University ensuring secure, uninterrupted operations. It handles servers, surveillance, software, and networking for efficient digital functioning.
           </p>
         </div>
-
-        <div className="right-content">
-          <img src={dmcImage} alt="DMC" />
+        <div style={{ flex: "1 1 35%", textAlign: "center" }} data-aos="fade-left">
+          <img src={dmcImage} alt="DMC Logo" style={{ maxWidth: "100%", height: "auto", borderRadius: '50% ', width:'15rem' }} />
         </div>
-      </div>
-      <div className="notifications-Container">
-        <h3 className="notificationsheading"> Latest Notifications </h3>
-        <div className="notifications" ><NotificationsScrolling /></div>
-      </div>
-      
+      </section>
 
-      <div className="services-container">
-        <h2 className="services">Services</h2>
-        <div className="cards-wrapper">
-          <div className="card">
-            <h3>Hardware</h3>
-            <p>
-              DMC inspects the complaints received through JNTUGV–eTicket and do
-              all the minor repairs. DMC maintains systems and servers for
-              various purposes.
-            </p>
-            <Link to="/Hardware" className="read-more-btn">
-              Read More
-            </Link>
-          </div>
-
-          <div className="card">
-            <h3>Networks</h3>
-            <p>
-              DMC maintains the Campus Wide Network and campus Wi-Fi. DMC
-              configures and maintains the University Firewall through this IP
-              based
-            </p>
-            <Link to="/Network" className="read-more-btn">
-              Read More
-            </Link>
-          </div>
-
-          <div className="card">
-            <h3>Surveillance</h3>
-            <p>
-              IP Cameras are installed at strategic locations in the campus and
-              the monitoring unit is housed in the VC's chamber to get a quick
-              review of the activities in the University.
-            </p>
-            <Link to="/SurveillanceService" className="read-more-btn">
-              Read More
-            </Link>
-          </div>
-
-          <div className="card">
-            <h3>Software</h3>
-            <p>
-              All purchases of software must be supported by guarantee and/or
-              warranty requirements and be compatible with the University's
-              server and/or hardware system.
-            </p>
-            <Link to="/Software" className="read-more-btn">
-              Read More
-            </Link>
-          </div>
+      {/* Notifications Section */}
+      <section style={{ background: "#e3f2fd", padding: "1.5rem", borderRadius: "1rem", maxWidth: 1100, margin: "0 auto 3rem", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }} data-aos="zoom-in">
+        <h3 style={{ color: "#0d47a1", marginBottom: 12, fontSize: "1.3rem" , textAlign: "center" }}>
+          <i className="fa fa-bell" style={{ marginRight: 8 }}></i>
+          Latest Notifications
+        </h3>
+        <div style={{ maxHeight: 320, overflowY: "auto", paddingRight: 10 }}>
+          <NotificationsScrolling />
         </div>
+      </section>
+      <section className="services-container" style={{ maxWidth: 1100, margin: "0 auto", padding: "1rem" }}>
+  <h2 className="services" style={{ 
+    textAlign: "center", 
+    color: "#1976d2", 
+    marginBottom: "1.5rem", 
+    fontSize: "1.8rem" 
+  }}>
+    Our Services
+  </h2>
+
+  <div className="cards-wrapper" style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", // more mobile-friendly
+    gap: "1.5rem"
+  }}>
+    {[
+      {
+        title: "Hardware",
+        desc: "DMC inspects complaints via JNTUGV–eTicket, performs minor repairs, and maintains systems and servers.",
+        link: "/Hardware"
+      },
+      {
+        title: "Networks",
+        desc: "DMC manages Campus Wide Network, Wi-Fi, and configures University Firewall through IP-based control.",
+        link: "/Network"
+      },
+      {
+        title: "Surveillance",
+        desc: "IP Cameras are installed at strategic locations and monitored centrally from the VC’s chamber.",
+        link: "/SurveillanceService"
+      },
+      {
+        title: "Software",
+        desc: "All software purchases must include warranty/guarantees and be compatible with University infrastructure.",
+        link: "/Software"
+      }
+    ].map((service, idx) => (
+      <div key={idx} className="card" data-aos="fade-up" data-aos-delay={idx * 100} style={{
+        backgroundColor: "#fff",
+        padding: "1.5rem",
+        borderRadius: "0.75rem",
+        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.08)",
+        transition: "transform 0.2s ease",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}>
+        <h3 style={{ color: "#1565c0", marginBottom: "0.75rem", fontSize: "1.2rem" }}>{service.title}</h3>
+        <p style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>{service.desc}</p>
+        <Link to={service.link} className="read-more-btn" style={{
+          marginTop: "1.5rem",
+          color: "#fff",
+          backgroundColor: "#1976d2",
+          padding: "0.6rem 1.2rem",
+          borderRadius: "0.5rem",
+          textDecoration: "none",
+          fontWeight: 500,
+          alignSelf: "flex-start"
+        }}>
+          Read More
+        </Link>
       </div>
-    </div>
+    ))}
+  </div>
+</section>
+
+
+      {/* Back to Top Button */}
+{showScrollTop && (
+  <button
+    onClick={scrollToTop}
+    title="Back to top"
+    aria-label="Back to top"
+    style={{
+      position: "fixed",
+      bottom: "2rem",
+      right: "2rem",
+      backgroundColor: "#1565c0",
+      color: "#fff",
+      border: "none",
+      borderRadius: "50%",
+      width: "3.5rem",
+      height: "3.5rem",
+      boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+      cursor: "pointer",
+      fontSize: "1.4rem",
+      zIndex: 9999,
+      transition: "all 0.3s ease",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}
+    onMouseOver={(e) => {
+      e.currentTarget.style.backgroundColor = "#0d47a1";
+      e.currentTarget.style.transform = "scale(1.05)";
+    }}
+    onMouseOut={(e) => {
+      e.currentTarget.style.backgroundColor = "#1565c0";
+      e.currentTarget.style.transform = "scale(1)";
+    }}
+  >
+    ↑
+  </button>
+)}
+
+          </div>
   );
 };
 

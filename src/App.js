@@ -4,26 +4,21 @@ import "./App.css";
 import Footer from "./Components/Footer/Footer";
 import AboutMain from "./Components/Header/About/AboutMain";
 import Activities from "./Components/Header/About/Activities/Activities";
+import Coordinator from "./Components/Header/About/Coordinator/Coordinator";
 import Dmc from "./Components/Header/About/Dmc/Dmc";
-import Dropdown from "./Components/Header/Dropdown";
-import Header from "./Components/Header/Header";
-import Home from "./Components/Home/Home";
-//import Events from "./Components/Header/About/Events/Events";
 import Facilities from "./Components/Header/About/Facilities/Facilities";
 import Futureplans from "./Components/Header/About/Futureplans/Futureplans";
-//import Elearn from "./Components/Header/Elearn/Elearn";
-import Surveillance from "./Components/Header/Surveillance/Surveillance";
-// import Eticket from "./Components/Header/Eticket/Eticket";
 import ContactUs from "./Components/Header/ContactUs/ContactUs";
+import Dropdown from "./Components/Header/Dropdown";
 import Gallery from "./Components/Header/Gallery/Gallery";
-//import Team from "./Components/Header/Team/Team";
-import Coordinator from './Components/Header/About/Coordinator/Coordinator';
+import Header from "./Components/Header/Header";
+import Surveillance from "./Components/Header/Surveillance/Surveillance";
+import Home from "./Components/Home/Home";
 
 import Hardware from "./Components/Home/Hardware";
 import Network from "./Components/Home/Network";
 import Software from "./Components/Home/Software";
 import SurveillanceService from "./Components/Home/SurveillanceService";
-//import Notifications from "./Components/Header/Notifications/Notifications";
 
 import Supportingstaff from "./Components/Header/About/Supportingstaff/Supportingstaff";
 import Adminpanel from "./Components/Header/Web_development_team/Adminpanel/Adminpanel";
@@ -36,19 +31,19 @@ import Placement from "./Components/Header/Web_development_team/Placement/Placem
 import ResearchAndDevelopment from "./Components/Header/Web_development_team/ResearchAndDevelopment/ResearchAndDevelopment";
 import Sports from "./Components/Header/Web_development_team/Sports/Sports";
 import WebDevelopmenTeam from "./Components/Header/Web_development_team/WebDevelopmenTeam";
-import Website from "./Components/Header/Web_development_team/Website/Website";
+import WebsiteTeam from "./Components/Header/Web_development_team/Website/Website";
 
 function App() {
-  // const location = useLocation();
-
-  // Check if the current route is the home page ("/")
-  //const isHomePage = location.pathname === '/';
-
   return (
-    <div>
+    <div className="App">
+      {/* Sticky Header */}
       <Header />
+
+      {/* Navbar that becomes sticky after scroll */}
       <Dropdown />
-      <div>
+
+      {/* Main Content Area */}
+      <main style={{ marginTop: "1rem", padding: "0 1rem" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dmc" element={<AboutMain />}>
@@ -56,23 +51,15 @@ function App() {
             <Route path="dmc-co-ordinator" element={<Coordinator />} />
             <Route path="dmc-designer" element={<Supportingstaff />} />
             <Route path="dmc-activities" element={<Activities />} />
-            {/* <Route path="dmc-events" element={<Events />} /> */}
             <Route path="dmc-future-plans" element={<Futureplans />} />
             <Route path="dmc-facilities" element={<Facilities />} />
           </Route>
-
-          {/* <Route path="about-elearn" element={<Elearn />} /> */}
-          {/* <Route path="about-notifications" element={<Notifications />} /> */}
-          <Route path="about-surveillance" element={<Surveillance />} />
-          {/* <Route path="about-eticket" element={<Eticket />} /> */}
-          <Route path="about-gallery" element={<Gallery />} />
-          <Route path="contact-us" element={<ContactUs />} />
-          {/* <Route path="about-dmc-team" element={<Team />} /> */}
-
-
+          <Route path="/about-surveillance" element={<Surveillance />} />
+          <Route path="/about-gallery" element={<Gallery />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/wdt" element={<WebDevelopmenTeam />}>
-          <Route path="lead-contributors" element={<Leadcontributors />} />
-            <Route path="website-team" element={<Website />} />
+            <Route path="lead-contributors" element={<Leadcontributors />} />
+            <Route path="website-team" element={<WebsiteTeam />} />
             <Route path="admin-panel" element={<Adminpanel />} />
             <Route path="iqac-team" element={<Iqac />} />
             <Route path="placement-team" element={<Placement />} />
@@ -81,17 +68,16 @@ function App() {
             <Route path="examination-team" element={<Examination />} />
             <Route path="nss-team" element={<Nss />} />
             <Route path="sports-team" element={<Sports />} />
-           
-
           </Route>
-
-          <Route path="Hardware" element={<Hardware />} />
-          <Route path="Network" element={<Network />} />
-          <Route path="SurveillanceService" element={<SurveillanceService />} />
-          <Route path="Software" element={<Software />} />
+          <Route path="/Hardware" element={<Hardware />} />
+          <Route path="/Network" element={<Network />} />
+          <Route path="/SurveillanceService" element={<SurveillanceService />} />
+          <Route path="/Software" element={<Software />} />
         </Routes>
-        <Footer />
-      </div>
+      </main>
+
+      {/* Footer at the bottom */}
+      <Footer />
     </div>
   );
 }
