@@ -1,7 +1,9 @@
 # Digital Monitoring Cell - JNTU-GV
 
 Welcome to the official GitHub repository for the **Digital Monitoring Cell (DMC)** of **Jawaharlal Nehru Technological University - Gurajada Vizianagaram (JNTU-GV)**.  
-🔗 Visit the website: [https://dmc.vercel.app](https://dmc-v2.vercel.app)
+
+🔗 Visit the website: [https://dmc.jntugv.edu.in](https://dmc.jntugv.edu.in) -- production
+                      [https://dmc.vercel.app](https://dmc-v2.vercel.app) -- stagging
 
 ## 📌 About the Project
 
@@ -48,7 +50,7 @@ To set up the project locally:
 ### Installation
 
 ```bash
-git clone https://github.com/<>/dmc-cell.git
+git clone https://github.com/Jntu-Gurajada-Vizianagaram/dmc-cell.git
 cd dmc-cell
 npm install
 npm start
