@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vercel/analytics": "^1.5.0",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
@@ -51,5 +52,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
-  }
+  },
+  "resolutions": {
+  "eslint-plugin-react": "^7.33.2"
+}
 }

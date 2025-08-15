@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const menuItems = [
@@ -16,45 +16,100 @@ const menuItems = [
 
 const WebDevelopmenTeam = () => {
   const location = useLocation();
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const activeLink = menuRef.current?.querySelector(".active-tab");
+    if (activeLink && window.innerWidth <= 768) {
+      const parent = menuRef.current;
+      const parentWidth = parent.offsetWidth;
+      const linkOffset = activeLink.offsetLeft;
+      const linkWidth = activeLink.offsetWidth;
+      const scrollTo = linkOffset - parentWidth / 2 + linkWidth / 2;
+
+      parent.scrollTo({
+        left: scrollTo,
+        behavior: "smooth",
+      });
+    }
+  }, [location.pathname]);
 
   return (
-    <div style={styles.container}>
+    <div style={styles.pageWrapper}>
       <h2 style={styles.heading}>Web Development Team</h2>
 
-      <div style={styles.menuWrapper}>
-        {menuItems.map((item) => {
-          const isActive = location.pathname === item.to;
-          return (
-            <Link
-              key={item.to}
-              to={item.to}
-              style={{
-                ...styles.menuButton,
-                ...(isActive ? styles.activeButton : {}),
-              }}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+      <div className="responsive-container" style={styles.mainContent}>
+        {/* Sidebar or Top Tabs */}
+        <nav
+          className="responsive-menu"
+          style={styles.menuWrapper}
+          ref={menuRef}
+        >
+          {menuItems.map((item) => {
+            const isActive = location.pathname === item.to;
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={isActive ? "active-tab" : ""}
+                style={{
+                  ...styles.menuButton,
+                  ...(isActive ? styles.activeButton : {}),
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Right Content Area */}
+        <div style={styles.outletWrapper}>
+          <Outlet />
+        </div>
       </div>
 
-      <div style={styles.outletWrapper}>
-        <Outlet />
-      </div>
+      {/* Responsive CSS */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .responsive-container {
+              flex-direction: column !important;
+            }
+            .responsive-menu {
+              flex-direction: row !important;
+              overflow-x: auto !important;
+              gap: 10px !important;
+              padding-bottom: 1rem !important;
+              border-bottom: 1px solid #eee !important;
+              margin-bottom: 1rem !important;
+              justify-content: flex-start !important;
+              width: 100% !important;
+              scroll-behavior: smooth;
+              -ms-overflow-style: none; /* IE/Edge */
+              scrollbar-width: none; /* Firefox */
+            }
+            .responsive-menu::-webkit-scrollbar {
+              display: none; /* Chrome, Safari */
+            }
+            .responsive-menu a {
+              min-width: 160px;
+              flex: 0 0 auto;
+              white-space: nowrap;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
 
 const styles = {
-  container: {
+  pageWrapper: {
     width: "100%",
     maxWidth: "1300px",
     margin: "0 auto",
-    padding: "1.5rem 1rem",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    padding: "1rem",
     fontFamily: "Segoe UI, sans-serif",
   },
   heading: {
@@ -64,30 +119,30 @@ const styles = {
     marginBottom: "1.5rem",
     textAlign: "center",
   },
+  mainContent: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "1.5rem",
+    width: "100%",
+    boxSizing: "border-box",
+  },
   menuWrapper: {
     display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: "14px",
-    marginBottom: "2rem",
-    width: "100%",
+    flexDirection: "column",
+    gap: "12px",
+    minWidth: "220px",
+    maxWidth: "250px",
   },
   menuButton: {
-    minWidth: "180px",
-    maxWidth: "260px",
-    height: "46px",
-    padding: "0 16px",
-    borderRadius: "10px",
-    backgroundColor: "#f8f8f8",
+    padding: "12px 16px",
+    borderRadius: "8px",
+    backgroundColor: "#f4f4f4",
     color: "#333",
     textDecoration: "none",
     fontWeight: "600",
     fontSize: "15px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     textAlign: "center",
-    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
     border: "1px solid #ccc",
     transition: "all 0.3s ease",
   },
@@ -95,17 +150,17 @@ const styles = {
     backgroundColor: "#2e0669",
     color: "#fff",
     borderColor: "#2e0669",
-    transform: "scale(1.04)",
-    boxShadow: "0 4px 12px rgba(46, 6, 105, 0.3)",
+    transform: "scale(1.03)",
+    boxShadow: "0 4px 10px rgba(46,6,105,0.2)",
   },
   outletWrapper: {
-    width: "100%",
-    maxWidth: "1200px",
+    flex: 1,
     backgroundColor: "#fff",
     borderRadius: "10px",
-    padding: "1.5rem",
+    padding: "1rem",
     boxShadow: "0 3px 10px rgba(0, 0, 0, 0.05)",
     boxSizing: "border-box",
+    minHeight: "60vh",
   },
 };
 

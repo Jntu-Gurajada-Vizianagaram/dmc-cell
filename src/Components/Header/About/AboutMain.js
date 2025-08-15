@@ -1,65 +1,77 @@
-import React from "react";
-import { FaCogs, FaInfoCircle, FaLightbulb, FaPaintBrush, FaTasks, FaUserTie } from "react-icons/fa";
-import { Link, Outlet, useLocation } from "react-router-dom";
-// import "./About.css";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaCogs,
+  FaInfoCircle,
+  FaLightbulb,
+  FaPaintBrush,
+  FaTasks,
+  FaUserTie,
+} from "react-icons/fa";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const menuItems = [
-  {
-    to: "/dmc/about-dmc",
-    label: "About DMC Cell",
-    icon: <FaInfoCircle />,
-  },
-  {
-    to: "/dmc/dmc-co-ordinator",
-    label: "DMC Co-Ordinator",
-    icon: <FaUserTie />,
-  },
-  {
-    to: "/dmc/dmc-designer",
-    label: "DMC Designer",
-    icon: <FaPaintBrush />,
-  },
-  {
-    to: "/dmc/dmc-activities",
-    label: "DMC Activities",
-    icon: <FaTasks />,
-  },
-  // Uncomment if needed in the future
-  // {
-  //   to: "/dmc/dmc-events",
-  //   label: "DMC Events",
-  //   icon: <FaCalendarAlt />,
-  // },
-  {
-    to: "/dmc/dmc-future-plans",
-    label: "DMC Future Plans",
-    icon: <FaLightbulb />,
-  },
-  {
-    to: "/dmc/dmc-facilities",
-    label: "DMC Facilities",
-    icon: <FaCogs />,
-  },
+  { to: "/dmc/about-dmc", label: "About DMC Cell", icon: <FaInfoCircle /> },
+  { to: "/dmc/dmc-co-ordinator", label: "DMC Co-Ordinator", icon: <FaUserTie /> },
+  { to: "/dmc/dmc-designer", label: "DMC Designer", icon: <FaPaintBrush /> },
+  { to: "/dmc/dmc-activities", label: "DMC Activities", icon: <FaTasks /> },
+  { to: "/dmc/dmc-future-plans", label: "DMC Future Plans", icon: <FaLightbulb /> },
+  { to: "/dmc/dmc-facilities", label: "DMC Facilities", icon: <FaCogs /> },
 ];
 
 const AboutMain = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const navRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 700);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const active = navRef.current?.querySelector(".active");
+    if (active && isMobile) {
+      const parent = navRef.current;
+      const offset = active.offsetLeft - parent.offsetWidth / 2 + active.offsetWidth / 2;
+      parent.scrollTo({ left: offset, behavior: "smooth" });
+    }
+  }, [location.pathname, isMobile]);
+
+  const activeIndex = menuItems.findIndex(item => item.to === location.pathname);
+
+  const goToIndex = (index) => {
+    if (index >= 0 && index < menuItems.length) {
+      navigate(menuItems[index].to);
+    }
+  };
 
   return (
-    <div className="ABOUT-Main" style={{ display: "flex", minHeight: "70vh" }}>
+    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", width: "100%" }}>
+      {isMobile && (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 1rem" }}>
+          <button onClick={() => goToIndex(activeIndex - 1)} disabled={activeIndex === 0} style={{ background: "none", border: "none" }}>
+            <FaChevronLeft size={22} />
+          </button>
+          <button onClick={() => goToIndex(activeIndex + 1)} disabled={activeIndex === menuItems.length - 1} style={{ background: "none", border: "none" }}>
+            <FaChevronRight size={22} />
+          </button>
+        </div>
+      )}
+
       <nav
-        className="ABOUTallLeftMenu"
-        aria-label="About DMC Navigation"
+        ref={navRef}
         style={{
-          minWidth: 220,
-          background: "#f7fafc",
-          borderRadius: 12,
-          boxShadow: "0 2px 12px 0 rgba(11,61,145,0.07)",
-          padding: "28px 0 18px 0",
-          margin: "18px 24px 18px 0",
           display: "flex",
-          flexDirection: "column",
-          gap: 6,
+          flexDirection: isMobile ? "row" : "column",
+          overflowX: isMobile ? "auto" : "visible",
+          gap: "10px",
+          padding: isMobile ? "10px 0" : "30px 0 24px 0",
+          border: isMobile ? "none" : "1.5px solid #e0e7ef",
+          minWidth: isMobile ? undefined : 200,
         }}
       >
         {menuItems.map((item) => {
@@ -68,36 +80,30 @@ const AboutMain = () => {
             <Link
               key={item.to}
               to={item.to}
-              className={`menuButton${isActive ? " active" : ""}`}
+              className={isActive ? "active" : ""}
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
-                padding: "12px 22px",
-                fontWeight: isActive ? 700 : 500,
-                color: isActive ? "#035a5a" : "#0b3d91",
-                background: isActive ? "#e3f2fd" : "transparent",
-                borderRadius: 8,
+                gap: 8,
+                padding: isMobile ? "10px 12px" : "12px 16px",
                 textDecoration: "none",
-                fontSize: "1.08rem",
-                transition: "background 0.18s, color 0.18s, font-weight 0.18s",
-                boxShadow: isActive ? "0 2px 8px 0 rgba(3,90,90,0.08)" : "none",
-                outline: "none",
+                fontWeight: isActive ? 700 : 400,
+                color: isActive ? "#035a5a" : "#0b3d91",
+                background: isActive ? (isMobile ? "#e3f2fd" : "linear-gradient(90deg, #e3f2fd 60%, #e0f7fa 100%)") : "transparent",
+                borderRadius: isMobile ? 0 : 12,
+                borderBottom: isMobile && isActive ? "3px solid #90caf9" : "none",
+                minWidth: isMobile ? 140 : "auto",
+                flex: isMobile ? "0 0 auto" : undefined,
               }}
-              tabIndex={0}
-              aria-current={isActive ? "page" : undefined}
-              onFocus={e => e.currentTarget.style.background = "#e3f2fd"}
-              onBlur={e => { if (!isActive) e.currentTarget.style.background = "transparent"; }}
-              onMouseOver={e => { if (!isActive) e.currentTarget.style.background = "#f0f7fa"; }}
-              onMouseOut={e => { if (!isActive) e.currentTarget.style.background = "transparent"; }}
             >
-              <span style={{ fontSize: "1.18em", display: "flex", alignItems: "center" }}>{item.icon}</span>
+              <span style={{ fontSize: "1.1rem" }}>{item.icon}</span>
               <span>{item.label}</span>
             </Link>
           );
         })}
       </nav>
-      <div style={{ flex: 1, minWidth: 0 }}>
+
+      <div style={{ flex: 1, padding: isMobile ? "1rem" : "2rem", background: "#fff", minHeight: "60vh" }}>
         <Outlet />
       </div>
     </div>
