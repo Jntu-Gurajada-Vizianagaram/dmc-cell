@@ -44,7 +44,7 @@ const teamData = [
     name: 'Uppala Kirtana',
     rollNumber: '20VV1A1261',
     year: '2023-2024',
-    role: 'Team Member',
+    role: '',
     socials: {
       linkedin: 'https://www.linkedin.com/in/uppalakirtana',
       github: 'https://github.com/uppalakirtana',

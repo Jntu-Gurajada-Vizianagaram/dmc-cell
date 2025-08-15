@@ -62,7 +62,7 @@ const teamData = [
     rollNumber: '21VV1A1203',
     year: '2024-2025',
     role: 'Front End Developer',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/harsha-vivek-',
     github: '',
     instagram: '',
     email: '',

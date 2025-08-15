@@ -149,22 +149,31 @@ const Examination = () => {
                       <span className="badge">{member.role || "Contributor"}</span>
                     </div>
                     <div className="socials">
-                      {socialTypes.map(({ type, icon, className }) => (
-                        <a
-                          key={type}
-                          href={getSocialLink(type, member)}
-                          aria-label={getSocialLabel(type, member.name)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`social-link ${className}`}
-                          style={
-                            !member[type] ? { opacity: 0.4, pointerEvents: 'none', cursor: 'default' } : {}
-                          }
-                          tabIndex={0}
-                        >
-                          {icon}
-                        </a>
-                      ))}
+                      {socialTypes.map(({ type, icon, className }) => {
+                        const hasLink = member[type];
+                        return hasLink ? (
+                          <a
+                            key={type}
+                            href={getSocialLink(type, member)}
+                            aria-label={getSocialLabel(type, member.name)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`social-link ${className}`}
+                            tabIndex={0}
+                          >
+                            {icon}
+                          </a>
+                        ) : (
+                          <span
+                            key={type}
+                            className={`social-link ${className}`}
+                            style={{ opacity: 0.4, cursor: 'default' }}
+                            tabIndex={0}
+                          >
+                            {icon}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -226,6 +235,8 @@ const Examination = () => {
           box-shadow: 0 4px 18px 0 #035a5a18;
           display: flex;
           flex-direction: column;
+          min-height : 100px;
+          max-width: fit-content;
           align-items: center;
           transition: box-shadow 0.18s, transform 0.18s;
         }
@@ -306,8 +317,8 @@ const Examination = () => {
         }
         .social-link {
           font-size: 1.25rem;
-          color: #4D96FF;
-          background: #eaf6f6;
+          // color: #4D96FF;
+          // background: #eaf6f6;
           border-radius: 50%;
           width: 2.2em;
           height: 2.2em;

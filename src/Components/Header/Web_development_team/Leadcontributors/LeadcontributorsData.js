@@ -36,7 +36,7 @@ const teamData = [
     name: 'Anil Sinthu',
     Image: '',
     rollNumber: '22VV5A1273',
-    year: '2024-2025',
+    year: '2024-Tilldate',
     role: 'Full Stack Developer',
     website:'https://anilsinthu.vercel.app/',
     linkedin: 'https://www.linkedin.com/in/anilsinthu',
@@ -48,7 +48,7 @@ const teamData = [
     name: 'Harsha Vivek Gangadhar',
     Image: '',
     rollNumber: '21VV1A1203',
-    year: '2024-2025',
+    year: '2024-Tilldate',
     role: 'Frontend Developer',
     linkedin: 'https://www.linkedin.com/in/harsha-vivek-a47309243/',
     website: 'https://harsha-vivek03.github.io/personalportfolio/',
@@ -56,6 +56,17 @@ const teamData = [
     instagram: 'https://www.instagram.com/the_hidden_hate/',
     email: 'mailto:hvgnani79813@gmail.com',
   },
+  {
+    name: "Tarun Bommali",
+    Image: "",
+    rollNumber: '',
+    year : "2025 - Till date",
+    linkedin: '',
+    website: '',
+    github: 'https://github.com/tarunbommali',
+    instagram: '',
+    email : ''
+  }
 ];
 
 export default teamData;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const menuItems = [
@@ -16,6 +16,23 @@ const menuItems = [
 
 const WebDevelopmenTeam = () => {
   const location = useLocation();
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const activeLink = menuRef.current?.querySelector(".active-tab");
+    if (activeLink && window.innerWidth <= 768) {
+      const parent = menuRef.current;
+      const parentWidth = parent.offsetWidth;
+      const linkOffset = activeLink.offsetLeft;
+      const linkWidth = activeLink.offsetWidth;
+      const scrollTo = linkOffset - parentWidth / 2 + linkWidth / 2;
+
+      parent.scrollTo({
+        left: scrollTo,
+        behavior: "smooth",
+      });
+    }
+  }, [location.pathname]);
 
   return (
     <div style={styles.pageWrapper}>
@@ -23,13 +40,18 @@ const WebDevelopmenTeam = () => {
 
       <div className="responsive-container" style={styles.mainContent}>
         {/* Sidebar or Top Tabs */}
-        <nav className="responsive-menu" style={styles.menuWrapper}>
+        <nav
+          className="responsive-menu"
+          style={styles.menuWrapper}
+          ref={menuRef}
+        >
           {menuItems.map((item) => {
             const isActive = location.pathname === item.to;
             return (
               <Link
                 key={item.to}
                 to={item.to}
+                className={isActive ? "active-tab" : ""}
                 style={{
                   ...styles.menuButton,
                   ...(isActive ? styles.activeButton : {}),
@@ -62,19 +84,13 @@ const WebDevelopmenTeam = () => {
               border-bottom: 1px solid #eee !important;
               margin-bottom: 1rem !important;
               justify-content: flex-start !important;
-              min-width: 0 !important;
-              max-width: 100vw !important;
               width: 100% !important;
-              /* Hide scroll bar for aesthetics, but keep scrollable */
-              scrollbar-width: thin;
-              scrollbar-color: #ccc #f4f4f4;
+              scroll-behavior: smooth;
+              -ms-overflow-style: none; /* IE/Edge */
+              scrollbar-width: none; /* Firefox */
             }
             .responsive-menu::-webkit-scrollbar {
-              height: 6px;
-            }
-            .responsive-menu::-webkit-scrollbar-thumb {
-              background: #ccc;
-              border-radius: 3px;
+              display: none; /* Chrome, Safari */
             }
             .responsive-menu a {
               min-width: 160px;

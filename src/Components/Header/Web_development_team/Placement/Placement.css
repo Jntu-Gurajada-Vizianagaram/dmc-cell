@@ -1,53 +1,46 @@
-table {
-    border-collapse: collapse;
-    width: 100%; /* Adjust the width based on your requirement */
-    margin: 0 auto;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 12px; /* Increase padding for better spacing */
-    text-align: left;
-  }
-  
-  th {
-    background-color: #2e0669;
+/* Container for title and sort dropdown */
+.title-sort-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Enables wrapping on smaller screens */
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+}
+.lead-container {
+  padding: 2.5rem 1rem 2rem 1rem;
+  background: #fafdff;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
 
-  }
-  
-  .SP {
-    color: #2e0669;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    margin-right: 5px; /* Optional: add margin between label and input */
-  }
-  
-  .search-container {
-    display: flex;
-    justify-content: right;
-    margin-bottom: 10px; /* Optional: add margin for spacing */
-  }
-  
-  .pagination-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  
-  .pagination-container button {
-    margin-left: 5px;
-    background-color: #035a5a; /* Change to your desired background color */
-    color: #fff; /* Change to your desired text color */
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .pagination-container button:disabled {
-    background-color: #bdc3c7; /* Change to your desired background color for disabled state */
-    color: #181818; /* Change to your desired text color for disabled state */
-  }
-  
+/* Title styling */
+.lead-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2d3a4a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Dropdown label */
+.sort-container label {
+  font-weight: 500;
+  color: #2d3a4a;
+  margin-right: 8px;
+}
+
+/* Select dropdown */
+.sort-container select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #4D96FF55;
+  font-size: 15px;
+  background: #f8fbff;
+  color: #2d3a4a;
+  outline: none;
+  font-weight: 500;
+}
