@@ -1,142 +1,181 @@
-/* Reset some default browser styles */
+/* Professional Academic Light Theme - JNTUGV DMC UGC/GIGW Compliance Standard */
+:root {
+  --primary-blue: #0b3d91;
+  --secondary-blue: #1e40af;
+  --accent-gold: #f59e0b;
+  --accent-gold-soft: rgba(245, 158, 11, 0.08);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --bg-main: #ffffff;
+  --bg-soft: #f8fafc;
+  --bg-alt: #f1f5f9;
+  --card-radius: 1.25rem;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  --border-light: #e2e8f0;
+}
+
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-  background: #f7f8fc;
-  color: #222;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-x: hidden;
   scroll-behavior: smooth;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Main app container */
 #root, .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
 }
 
-/* Content area should grow and allow scrolling if needed */
-.App > div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Scrollbar styling */
+/* Institutional Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
-  background: #f1f1f1;
+  background: var(--bg-soft);
 }
 ::-webkit-scrollbar-thumb {
-  background: #bdbdbd;
-  border-radius: 8px;
+  background: #cbd5e1;
+  border-radius: 10px;
+  border: 2px solid var(--bg-soft);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #888;
+  background: #94a3b8;
 }
 
-/* Links */
-a {
-  color: #1976d2;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-a:hover, a:focus {
-  color: #0d47a1;
-  text-decoration: underline;
-}
-
-/* Headings */
+/* Professional Typography */
 h1, h2, h3, h4, h5, h6 {
-  color: #2e0669;
-  font-family: inherit;
+  color: var(--primary-blue);
+  font-weight: 700;
+  line-height: 1.25;
   margin-top: 0;
+  letter-spacing: -0.02em;
 }
 
-/* Utility classes */
-.text-center { text-align: center; }
-.mt-2 { margin-top: 1rem; }
-.mb-2 { margin-bottom: 1rem; }
-.p-2 { padding: 1rem; }
-
-/* Fade-in animation for page transitions */
-.fade-in {
-  animation: fadeIn 0.7s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Button base style */
-button, .btn {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6em 1.2em;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-button:hover, .btn:hover, button:focus, .btn:focus {
-  background: #1565c0;
-  outline: none;
-}
-
-/* Card style */
+/* Clean Card Architecture */
 .card {
-  background: #fff;
-  border-radius: 1em;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
-  padding: 1.5em;
-  margin: 1em 0;
-  transition: box-shadow 0.2s;
+  background: #ffffff;
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+  padding: 2.5rem;
+  margin: 1.5rem 0;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-light);
 }
-.card:hover, .card:focus-within {
-  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.16);
-}
-
-/* Accessibility focus outline */
-:focus-visible {
-  outline: 2px solid #ffd86b;
-  outline-offset: 2px;
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
 }
 
-/* Divider */
+.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+}
+
+.glass-dark {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Academic Light Hero */
+.institutional-hero {
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  padding: 6rem 2rem;
+  color: var(--text-main);
+  text-align: center;
+  border-bottom: 2px solid var(--border-light);
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.institutional-hero h1 {
+  color: var(--primary-blue);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin-bottom: 1.25rem;
+}
+
+.institutional-hero p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 850px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Animation */
+.fade-in {
+  animation: academicFadeIn 0.6s ease-out forwards;
+}
+@keyframes academicFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Standard Academic Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-blue);
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  padding: 0.85rem 2.25rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(11, 61, 145, 0.1);
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(11, 61, 145, 0.2);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue) !important;
+}
+.btn-outline:hover {
+  background: var(--bg-soft);
+}
+
 hr {
   border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 2em 0;
+  height: 1px;
+  background: var(--border-light);
+  margin: 4rem 0;
 }
 
-/* Responsive fixes */
-@media (max-width: 900px) {
-  .App, #root {
-    font-size: 15px;
-  }
+/* Responsive Scaling */
+@media (max-width: 1024px) {
+  .card { padding: 2rem; }
 }
 @media (max-width: 600px) {
-  .App, #root {
-    font-size: 14px;
-  }
-
-  h1, h2, h3 {
-    font-size: 1.2em;
-  }
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .card { padding: 1.5rem; }
+  h1 { font-size: 1.8rem; }
+  .institutional-hero { padding: 4rem 1.5rem; }
 }
+

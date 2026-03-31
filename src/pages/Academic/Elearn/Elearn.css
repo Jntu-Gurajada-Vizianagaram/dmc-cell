@@ -1,0 +1,17 @@
+.elearn-container {
+  text-align: center;
+  margin: auto;
+  max-width: 800px; /* Adjust as needed */
+}
+
+.elearn-container h2 {
+  font-size: 24px;
+  color: #0b3d91; /* Adjust color as needed */
+}
+
+.elearn-container p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: black; /* Adjust color as needed */
+}
+
