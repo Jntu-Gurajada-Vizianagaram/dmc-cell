@@ -1,0 +1,54 @@
+.lead-container {
+  padding: 2.5rem 1rem 2rem 1rem;
+  background: #fafdff;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+.lead-title {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0b3d91; /* Deep Academic Blue */
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+.year-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+.year-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b3d91, #1565c0);
+  margin-right: 0.7rem;
+  box-shadow: 0 2px 8px rgba(11, 61, 145, 0.2);
+}
+.year-label {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #0b3d91;
+  margin-right: 0.7rem;
+  letter-spacing: 0.2px;
+}
+.year-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #d0e6f9 60%, #b2e0c6 100%);
+  border-radius: 2px;
+}
+
+
+@media (max-width: 600px) {
+  .lead-title {
+    font-size: 1.3rem;
+  }
+  .year-label {
+    font-size: 1rem;
+  }
+}
+

@@ -1,0 +1,224 @@
+.academic-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(11, 61, 145, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Outfit', sans-serif;
+}
+
+.nav-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  height: 80px;
+  transition: height 0.4s ease;
+}
+
+.nav-scrolled .nav-container {
+  height: 70px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary-blue);
+  background: rgba(11, 61, 145, 0.04);
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--accent-gold);
+  border-radius: 4px;
+}
+
+.dropdown-icon {
+  margin-left: 6px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:hover .dropdown-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background: #ffffff;
+  min-width: 280px;
+  border: 1px solid rgba(11, 61, 145, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  list-style: none;
+  z-index: 1001;
+}
+
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  text-decoration: none;
+  color: #475569;
+  font-size: 0.92rem;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-soft);
+  color: var(--primary-blue);
+  transform: translateX(5px);
+}
+
+/* Mobile Styling Overhaul */
+.mobile-toggle {
+  display: none;
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: var(--primary-blue);
+  z-index: 1002;
+}
+
+@media (max-width: 1200px) {
+  .nav-container {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1000px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100vh;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 100px 2rem 2rem;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    gap: 0.75rem;
+    z-index: 1001;
+  }
+
+  .nav-active {
+    right: 0;
+  }
+
+  .nav-item {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    padding-left: 1.5rem;
+    margin-top: 5px;
+    background: var(--bg-soft);
+    min-width: 100%;
+  }
+
+  .dropdown-menu.show {
+    animation: slideDown 0.3s ease forwards;
+    display: block;
+  }
+
+  .nav-item:hover .dropdown-menu {
+    transform: none;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

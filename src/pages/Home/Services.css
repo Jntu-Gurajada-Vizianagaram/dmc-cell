@@ -1,0 +1,60 @@
+/* V3 Services Layout & Utility */
+.class-service {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.heading-service {
+  color: #0b3d91; /* Deep Academic Blue */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.matter-service {
+  text-align: justify;
+  margin: 0 auto 3rem auto;
+  max-width: 900px;
+  line-height: 1.8;
+  color: #475569;
+  font-size: 1.1rem;
+}
+
+/* Service Card Enhancements */
+.card-service {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 15px rgba(11, 61, 145, 0.05);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.card-service:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(11, 61, 145, 0.12);
+}
+
+.btn-service {
+  background-color: #0b3d91;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+.btn-service:hover {
+  background-color: #082d6b;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+  .matter-service {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+}
