@@ -1,4 +1,3 @@
-import AdsClickIcon from "@mui/icons-material/AdsClick";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import LanIcon from "@mui/icons-material/Lan";

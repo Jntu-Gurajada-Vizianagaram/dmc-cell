@@ -23,7 +23,7 @@ const formerDesigners = [
     email: "niranjan@jntugv.edu.in",
     image: designerImage,
     bio: "The vision behind JNTU-GV's digital identity. Architected 10+ departmental portals and established the university's custom design system.",
-    projects: ["Main University Portal", "R&D Directorate System", "Academic Audit Grid"]
+    projects: ["JNTU-GV PHP websites Designer"]
   }
 ];
 

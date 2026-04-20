@@ -29,7 +29,7 @@ const Coordinator = () => {
               <h1 style={{ fontSize: "2.5rem", fontWeight: 700, color: "var(--primary-blue)", marginBottom: "0.5rem" }}>Dr. Nalini Bodasingi</h1>
               <p style={{ fontSize: "1.1rem", color: "var(--text-muted)", marginBottom: "2rem", lineHeight: 1.5 }}>
                 Associate Professor, Department of Electronics & Communication Engineering<br />
-                <strong>JNTU-GV University College of Engineering Vizianagaram</strong>
+                <strong>JNTU-GV  College of Engineering Vizianagaram</strong>
               </p>
 
               <div style={{ display: "grid", gap: "1rem" }}>

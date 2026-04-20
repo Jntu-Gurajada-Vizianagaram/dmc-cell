@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCode, FaDraftingCompass, FaProjectDiagram, FaTerminal, FaUsersCog } from 'react-icons/fa';
+import { FaCode, FaProjectDiagram, FaTerminal, FaUsersCog } from 'react-icons/fa';
 import BlueprintImage from "../../../../Assets/Institutional/institutional_digital_blueprint_archive_1774876831503.png";
 import dmcLogo from "../../../../Assets/dmc-logo.2da3359114a0f2905c6d.jpg";
 

@@ -72,7 +72,7 @@ const WebDevelopmenTeam = () => {
           }}
         >
           <div style={{ padding: "0 1rem 1.5rem", borderBottom: "1px solid var(--border-light)", marginBottom: "1rem", display: isMobile ? "none" : "block" }}>
-            <h4 style={{ margin: 0, color: "var(--accent-gold)", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 700 }}>Institutional Wings</h4>
+            <h4 style={{ margin: 0, color: "var(--accent-gold)", fontSize: "1rem", textTransform: "uppercase", letterSpacing: "2px", fontWeight: 800 }}>Institutional Wings</h4>
           </div>
           {menuItems.map((item) => {
             const isActive = location.pathname === item.to;
@@ -134,11 +134,11 @@ const WebDevelopmenTeam = () => {
                 <div style={{ marginTop: "5rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem" }}>
                   <div style={{ padding: "3rem", background: "var(--bg-soft)", borderRadius: "1rem", border: "1px solid var(--border-light)", textAlign: "center" }}>
                     <h3 style={{ margin: "0 0 10px 0", fontSize: "2.8rem", color: "var(--primary-blue)", fontWeight: 700 }}>15+</h3>
-                    <p style={{ margin: 0, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "1px", fontSize: "0.85rem" }}>Systems Engineered</p>
+                    <p style={{ margin: 0, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "1px", fontSize: "1rem" }}>Systems Engineered</p>
                   </div>
                   <div style={{ padding: "3rem", background: "var(--bg-soft)", borderRadius: "1rem", border: "1px solid var(--border-light)", textAlign: "center" }}>
                     <h3 style={{ margin: "0 0 10px 0", fontSize: "2.8rem", color: "var(--primary-blue)", fontWeight: 700 }}>50+</h3>
-                    <p style={{ margin: 0, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "1px", fontSize: "0.85rem" }}>Contributing Architects</p>
+                    <p style={{ margin: 0, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "1px", fontSize: "1rem" }}>Contributing Architects</p>
                   </div>
                 </div>
               </div>
