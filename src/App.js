@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
 // Layout Components
@@ -49,12 +49,15 @@ import WebsiteTeam from "./pages/Development/WebTeam/Website/Website";
 import DevelopersArchive from "./pages/Development/Archives/Archive/DevelopersArchive";
 
 function App() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
     <div className="App">
       <Header />
       <Navbar />
 
-      <main style={{ marginTop: "1rem", padding: "0 1rem" }}>
+      <main className={isHomePage ? "home-main" : "standard-main"}>
         <Routes>
           <Route path="/" element={<Home />} />
 

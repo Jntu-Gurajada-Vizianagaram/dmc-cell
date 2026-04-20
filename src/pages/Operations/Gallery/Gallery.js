@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaImages, FaTimes } from "react-icons/fa";
 import "./Gallery.css";
 import { skillsData } from "./GalleryImages";

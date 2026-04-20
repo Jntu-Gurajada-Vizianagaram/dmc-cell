@@ -1,9 +1,10 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import React, { useEffect, useState } from "react";
-import { FaBars, FaCaretDown, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import { useEffect, useState } from "react";
+import { FaBars, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import scrollToSection from "../../utils/scroll";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1000);
@@ -20,7 +22,7 @@ const Navbar = () => {
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
-    
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -39,6 +41,30 @@ const Navbar = () => {
       setActiveDropdown(null);
     } else {
       setActiveDropdown(index);
+    }
+  };
+
+  const handleNavClick = (e, path) => {
+    e.preventDefault();
+    if (path.startsWith('/#')) {
+      const hash = path.substring(2);
+      if (location.pathname !== "/") {
+        navigate(path);
+      } else {
+        scrollToSection(hash);
+      }
+      if (isMobile) setMobileMenuOpen(false);
+    } else if (path.startsWith('#')) {
+      scrollToSection(path.substring(1));
+      if (isMobile) setMobileMenuOpen(false);
+    } else {
+      // For external links, don't prevent default, or handle them directly
+      if (path.startsWith('http')) {
+        window.open(path, '_blank', 'noopener,noreferrer');
+      } else {
+        navigate(path);
+      }
+      if (isMobile) setMobileMenuOpen(false);
     }
   };
 
@@ -82,33 +108,50 @@ const Navbar = () => {
     { label: "University Portal", path: "https://jntugv.edu.in", external: true },
   ];
 
+  const isActive = (itemPath) => {
+    if (itemPath === "/") return location.pathname === "/";
+    return location.pathname.startsWith(itemPath);
+  };
+
   return (
     <nav className={`academic-nav ${isScrolled ? "nav-scrolled" : ""}`}>
       <div className="nav-container">
+
         <div className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
         <ul className={`nav-links ${mobileMenuOpen ? "nav-active" : ""}`}>
           {navItems.map((item, index) => (
-            <li 
-              key={index} 
+            <li
+              key={index}
               className={`nav-item ${item.dropdown ? "has-dropdown" : ""} ${activeDropdown === index ? "dropdown-active" : ""}`}
               onMouseEnter={() => !isMobile && setActiveDropdown(index)}
               onMouseLeave={() => !isMobile && setActiveDropdown(null)}
             >
               {item.external ? (
-                <a href={item.path} target="_blank" rel="noreferrer" className="nav-link external">
-                  {item.label} <FaExternalLinkAlt size={12} style={{ marginLeft: "5px" }} />
+                <a href={item.path} target="_blank" rel="noreferrer" className="nav-link-wrapper">
+                  <div className="nav-link external">
+                    {item.label} <FaExternalLinkAlt size={12} style={{ marginLeft: "5px" }} />
+                  </div>
                 </a>
               ) : (
-                <div className="nav-link-wrapper">
-                  <Link to={item.path} className={`nav-link ${location.pathname.startsWith(item.path) && item.path !== "/" ? "active" : ""}`}>
+                <div className={`nav-link-wrapper ${isActive(item.path) ? "active" : ""}`}>
+                  <a href={item.path} className="nav-link" onClick={(e) => handleNavClick(e, item.path, index)}>
                     {item.label}
-                  </Link>
+                  </a>
                   {item.dropdown && (
-                    <span className="dropdown-icon" onClick={() => mobileMenuOpen && toggleDropdown(index)}>
-                      <FaCaretDown />
+                    <span
+                      className={`dropdown-icon ${activeDropdown === index ? 'icon-rotated' : ''}`}
+                      onClick={(e) => {
+                        if (isMobile) {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleDropdown(index);
+                        }
+                      }}
+                    >
+                      {/* <FaChevronDown /> */}
                     </span>
                   )}
                 </div>
@@ -118,9 +161,9 @@ const Navbar = () => {
                 <ul className={`dropdown-menu ${activeDropdown === index ? "show" : ""}`}>
                   {item.dropdown.map((sub, subIndex) => (
                     <li key={subIndex}>
-                      <Link to={sub.path} className="dropdown-item">
+                      <a href={sub.path} className={`dropdown-item ${location.pathname === sub.path ? 'sub-active' : ''}`} onClick={(e) => handleNavClick(e, sub.path)}>
                         {sub.label}
-                      </Link>
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -129,6 +172,10 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
+      {/* Mobile nav blur backdrop */}
+      {mobileMenuOpen && isMobile && (
+        <div className="mobile-backdrop" onClick={() => setMobileMenuOpen(false)}></div>
+      )}
     </nav>
   );
 };

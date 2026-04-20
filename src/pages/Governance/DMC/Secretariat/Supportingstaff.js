@@ -1,99 +1,314 @@
 import React from "react";
-import { FaEnvelope, FaHistory, FaProjectDiagram, FaTerminal } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaHistory,
+  FaServer,
+  FaGlobe,
+  FaCode,
+  FaDatabase,
+  FaShieldAlt,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ProfileImg from "../../../../Assets/CoordinatorsTeam/website_team/profile_sa.jpg";
 
 const Supportingstaff = () => {
   return (
-    <div className="fade-in" style={{ maxWidth: 1100, margin: "2rem auto", width: "100%", padding: "0 1.5rem" }}>
-      <div className="card" style={{ padding: "5rem", background: "#fff" }}>
-        
-        {/* Header Section */}
-        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-          <h1 style={{ fontSize: "2.8rem", fontWeight: 700, color: "var(--primary-blue)", marginBottom: "0.75rem", letterSpacing: "-1px" }}>
-              Technical Secretariat
+    <div
+      className="fade-in"
+      style={{
+        maxWidth: 1150,
+        margin: "2rem auto",
+        width: "100%",
+        padding: "0 1.5rem",
+      }}
+    >
+      <div
+        className="card"
+        style={{
+          padding: "4rem",
+          background: "#fff",
+          borderRadius: "18px",
+        }}
+      >
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <h1
+            style={{
+              fontSize: "2.7rem",
+              fontWeight: 700,
+              color: "var(--primary-blue)",
+              marginBottom: "0.7rem",
+            }}
+          >
+            Technical Secretariat
           </h1>
-          <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px" }}>
-              The Operational Force behind the Digital Monitoring Cell
+
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: "1rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+            }}
+          >
+            Digital Infrastructure • Automation • Governance Support
           </p>
-          <div style={{ width: "64px", height: "4px", background: "var(--accent-gold)", margin: "1.5rem auto", borderRadius: "2px" }}></div>
+
+          <div
+            style={{
+              width: "70px",
+              height: "4px",
+              background: "var(--accent-gold)",
+              margin: "1.4rem auto",
+              borderRadius: "10px",
+            }}
+          ></div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "3rem" }}>
-          
-          {/* Main Technical Officer Profile */}
-          <div style={{ 
-            background: "var(--bg-soft)", 
-            padding: "3.5rem", 
-            borderRadius: "1rem", 
-            border: "1px solid var(--border-light)",
-            textAlign: "center"
-          }}>
-            <div style={{ 
-              width: "180px", 
-              height: "180px", 
-              margin: "0 auto 2.5rem", 
-              background: "var(--primary-blue)", 
-              borderRadius: "1rem", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center",
-              boxShadow: "var(--shadow-md)",
-              color: "#fff"
-            }}>
-               <FaTerminal size={70} />
-            </div>
-            
-            <h3 style={{ fontSize: "1.8rem", fontWeight: 700, color: "var(--text-main)", marginBottom: "0.25rem" }}>Mr. Anil Sinthu</h3>
-            <h4 style={{ fontSize: "0.95rem", color: "var(--accent-gold)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: "2.5rem" }}>
-                Data Processing Officer (DPO)
+        {/* Main Grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "2.5rem",
+          }}
+        >
+          {/* Left Section */}
+          <div
+            style={{
+              background: "var(--bg-soft)",
+              padding: "2.8rem",
+              borderRadius: "18px",
+              border: "1px solid var(--border-light)",
+              textAlign: "center",
+            }}
+          >
+            <img
+              src={ProfileImg}
+              alt="Anil Sinthu"
+              style={{
+                width: "180px",
+                height: "180px",
+                borderRadius: "18px",
+                objectFit: "cover",
+                marginBottom: "2rem",
+                boxShadow: "var(--shadow-md)",
+              }}
+            />
+
+            <h2
+              style={{
+                fontSize: "1.9rem",
+                fontWeight: 700,
+                marginBottom: "0.3rem",
+                color: "var(--text-main)",
+              }}
+            >
+              Mr. Anil Sinthu
+            </h2>
+
+            <h4
+              style={{
+                color: "var(--accent-gold)",
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                marginBottom: "2rem",
+              }}
+            >
+              Programmer
             </h4>
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "3rem" }}>
-               <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "#fff", padding: "1.1rem", borderRadius: "12px", border: "1px solid var(--border-light)" }}>
-                  <FaProjectDiagram color="var(--primary-blue)" />
-                  <span style={{ fontWeight: 600, fontSize: "0.95rem", color: "var(--text-main)" }}>ERP & Result Processing Lead</span>
-               </div>
-               <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "#fff", padding: "1.1rem", borderRadius: "12px", border: "1px solid var(--border-light)" }}>
-                  <FaEnvelope color="var(--primary-blue)" />
-                  <a href="mailto:dpo@jntugv.edu.in" style={{ fontWeight: 700, textDecoration: "none", color: "var(--primary-blue)" }}>dpo@jntugv.edu.in</a>
-               </div>
+            <a
+              href="mailto:dpo@jntugv.edu.in"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                // gap: "10px",
+                // padding: "0.9rem 1.3rem",
+                // borderRadius: "10px",
+                background: "#fff",
+                textDecoration: "none",
+                color: "var(--primary-blue)",
+                // fontWeight: 700,
+                // border: "1px solid var(--border-light)",
+                marginBottom: "1rem",
+              }}
+            >
+              <FaEnvelope />
+              dpo@jntugv.edu.in
+            </a>
+
+            {/* Quick Roles */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.9rem",
+                marginBottom: "2rem",
+              }}
+            >
+              {[
+                {
+                  icon: <FaGlobe color="var(--primary-blue)" />,
+                  text: "University Website Administration",
+                },
+                {
+                  icon: <FaServer color="var(--primary-blue)" />,
+                  text: "Server & Hosting Management",
+                },
+                {
+                  icon: <FaDatabase color="var(--primary-blue)" />,
+                  text: "ERP & Database Operations",
+                },
+                {
+                  icon: <FaShieldAlt color="var(--primary-blue)" />,
+                  text: "Security & SSL Management",
+                },
+                {
+                  icon: <FaCode color="var(--primary-blue)" />,
+                  text: "Web Application Development",
+                },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    background: "#fff",
+                    padding: "1rem",
+                    borderRadius: "12px",
+                    border: "1px solid var(--border-light)",
+                    textAlign: "left",
+                  }}
+                >
+                  {item.icon}
+                  <span
+                    style={{
+                      fontSize: "0.94rem",
+                      fontWeight: 600,
+                      color: "var(--text-main)",
+                    }}
+                  >
+                    {item.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Section */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {/* Profile Summary */}
+            <div
+              className="card"
+              style={{
+                padding: "2rem",
+                margin: 0,
+                background: "#fff",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: 700,
+                  color: "var(--primary-blue)",
+                  marginBottom: "1rem",
+                }}
+              >
+                Professional Profile
+              </h3>
+
+              <p
+                style={{
+                  color: "var(--text-muted)",
+                  lineHeight: 1.8,
+                  fontSize: "0.95rem",
+                  textAlign: "justify",
+                }}
+              >
+                Mr. Anil Sinthu serves as Programmer at JNTU-GV and contributes
+                significantly to the planning, development, and maintenance of
+                the university’s digital ecosystem. He manages official
+                websites, admission portals, examination systems, ERP services,
+                internal workflow applications, and institutional online
+                platforms.
+
+                His expertise includes Linux server administration, domain and
+                DNS management, SSL certificate implementation, PM2 deployment,
+                MySQL database operations, backups, security hardening, and
+                uptime monitoring.
+
+                He develops modern web solutions using React.js, Node.js,
+                Express.js, PHP, and related technologies, helping automate
+                university administration and improve digital governance.
+
+                He also provides technical support for result processing,
+                confidential examination workflows, cloud deployment, email
+                systems, user management, reporting systems, and official
+                university events.
+              </p>
             </div>
 
-            <p style={{ color: "var(--text-muted)", lineHeight: 1.6, fontSize: "0.95rem", fontStyle: "italic", fontWeight: 500 }}>
-              "Responsible for the high-fidelity processing of university permanent records and institutional digital audits."
-            </p>
-          </div>
+            {/* Core Works */}
+            <div
+              style={{
+                padding: "2rem",
+                background: "var(--bg-soft)",
+                borderRadius: "16px",
+                borderTop: "4px solid var(--primary-blue)",
+                border: "1px solid var(--border-light)",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: 700,
+                  color: "var(--primary-blue)",
+                  marginBottom: "1rem",
+                }}
+              >
+                Key Contributions at JNTU-GV
+              </h3>
 
-          {/* Role Mandate / Charter */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-             <div className="card" style={{ padding: "2.5rem", margin: 0, background: "#fff" }}>
-                <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--primary-blue)", marginBottom: "1.5rem" }}>Operational Mandates</h4>
-                <ul style={{ padding: 0, margin: 0, listStyle: "none" }}>
-                   {["Institutional Data Encryption", "Unified ERP Maintenance", "Academic Record Archival", "Network Asset Inventory"].map((item, i) => (
-                      <li key={i} style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.9rem", fontWeight: 500, color: "var(--text-muted)", fontSize: "0.95rem" }}>
-                        <span style={{ width: "8px", height: "8px", background: "var(--accent-gold)", borderRadius: "50%" }}></span>
-                        {item}
-                      </li>
-                   ))}
-                </ul>
-             </div>
-             
-             <div style={{ padding: "2.5rem", background: "var(--bg-soft)", borderRadius: "1rem", color: "var(--text-main)", border: "1px solid var(--border-light)", borderTop: "4px solid var(--primary-blue)" }}>
-                <h4 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--primary-blue)", marginBottom: "1rem" }}>Technical Contributions</h4>
-                <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "2rem", fontWeight: 400 }}>
-                    The Technical Secretariat has successfully transitioned JNTU-GV to a redundant L3 networking grid and automated 90% of administrative file tracking, ensuring full compliance with digital governance norms.
-                </p>
-                <Link to="/dmc/former-leadership" className="btn btn-outline" style={{ background: "#fff", width: "100%", justifyContent: "center" }}>
-                    <FaHistory style={{ marginRight: "10px" }} /> Roll of Honor
-                </Link>
-             </div>
-          </div>
+              <ul
+                style={{
+                  paddingLeft: "1rem",
+                  color: "var(--text-muted)",
+                  lineHeight: 1.9,
+                  fontSize: "0.95rem",
+                }}
+              >
+                <li>Official University Website Management</li>
+                <li>Admissions & Student Service Portals</li>
+                <li>ERP, Result Processing & Examination Systems</li>
+                <li>Cloud Hosting, SSL & Server Maintenance</li>
+                <li>Digital File Tracking & Workflow Automation</li>
+                <li>Database Administration & Backup Systems</li>
+                <li>Email, User Account & Network Support</li>
+                <li>Technical Support for University Events</li>
+              </ul>
 
+              <Link
+                to="/dmc/former-leadership"
+                className="btn btn-outline"
+                style={{
+                  marginTop: "1.5rem",
+                  width: "100%",
+                  justifyContent: "center",
+                  background: "#fff",
+                }}
+              >
+                <FaHistory style={{ marginRight: "10px" }} />
+                Roll of Honor
+              </Link>
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
-
   );
 };
 
